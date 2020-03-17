@@ -1,0 +1,25 @@
+{
+  "name": "cls",
+  "version": "1.0.0",
+  "description": "",
+  "main": "calc.js",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "node": "^13.10.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.10",
+    "@types/jasmine": "^3.5.9",
+    "@types/mocha": "^7.0.2",
+    "jasmine": "^3.5.0",
+    "mocha": "^7.1.0",
+    "nyc": "^15.0.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC"
+}
