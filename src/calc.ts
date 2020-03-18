@@ -1,24 +1,20 @@
 export class Calculador {
     constructor(){
     }
-    sumar(a : number, b : number):number{
-        let c=0;
-        
-        for(a=a;a>0;a--){
-            for(c=b;c==b;b++){
+    sumar(numA:number, numB:number):number{
+        let aux=0;
+        for(numA;numA>0;numA--){
+            for(aux=numB;aux==numB;numB++){
             }
-        }
-        return b;
+        }return numB;
     }
 
-    resta(a : number, b : number):number{
-        let c=0;
-        
-        for(b=b;b>0;b--){
-            for(c=a;c==a;a--){
+    restar(numA:number, numB:number):number{
+        let aux=0;  
+        for(numB;numB>0;numB--){
+            for(aux=numA;aux==numA;numA--){
             }
-        }
-        return a;
+        }return numA;
     }
 
 }
