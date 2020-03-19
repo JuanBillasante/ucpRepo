@@ -19,10 +19,37 @@ describe('calculate', function() {
     });
   });
 
- describe('accionReceptor', function(){
+    describe('accionNum1', function(){
       it('Accion', function(){
         const r = new AccionReceptor();
-        let result = r.ActionNumero("2");
-        expect(result).equal("2");
+        expect(r.ActionNumero("2")).equal("2");
       });
     });
+
+    describe('accionNum2', function(){
+      it('Accion', function(){
+        const r = new AccionReceptor();
+        r.ActionNumero("1");
+        expect(r.ActionNumero("2")).equal("12");
+      });
+    });
+
+    describe('accionNum3', function(){
+      it('Accion', function(){
+        const r = new AccionReceptor();
+        r.ActionNumero("1");
+        r.ActionNumero("2");
+        expect(r.ActionNumero("3")).equal("123");
+      });
+    });
+
+    describe('accionNum4', function(){
+      it('Accion', function(){
+        const r = new AccionReceptor();
+        r.ActionNumero("1");
+        for(let a=0; a>22; a++){
+          r.ActionNumero("0");
+        }
+        expect(r.ActionNumero("")).equal("10000000000000000000000");
+    });
+  });
