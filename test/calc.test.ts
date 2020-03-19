@@ -1,6 +1,7 @@
 import { expect } from "chai";
-import { Calculador } from "../src/calc";
+import { Calculador } from "../src/Calc";
 import 'mocha';
+import { AccionReceptor } from "../src/AccionReceptor";
 
 describe('calculate', function() {
     it('Sumar', function() {
@@ -17,3 +18,11 @@ describe('calculate', function() {
       expect(result).equal(4);
     });
   });
+
+ describe('accionReceptor', function(){
+      it('Accion', function(){
+        const r = new AccionReceptor();
+        let result = r.ActionNumero("2");
+        expect(result).equal("2");
+      });
+    });
