@@ -47,9 +47,9 @@ describe('calculate', function() {
       it('Accion', function(){
         const r = new AccionReceptor();
         r.ActionNumero("1");
-        for(let a=0; a>22; a++){
+        for(let a=0; a < 22; a++){
           r.ActionNumero("0");
         }
-        expect(r.ActionNumero("")).equal("10000000000000000000000");
+        expect(r.stateNumero).equal("10000000000000000000000");
     });
   });
