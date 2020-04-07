@@ -2,6 +2,9 @@ import { expect } from "chai";
 import { Calculador } from "../src/Calc";
 import 'mocha';
 import { AccionReceptor } from "../src/AccionReceptor";
+import { Parseador } from "../src/Parseador";
+
+
 
 describe('calculate', function() {
     it('Sumar', function() {
@@ -53,3 +56,19 @@ describe('calculate', function() {
         expect(r.stateNumero).equal("10000000000000000000000");
     });
   });
+
+  describe('Parseador', function() {
+    it('Cero traducido', function() {
+      const r = new Parseador();
+      expect(r.traducirNumero("cero")).equal("0");
+    });
+  });
+
+  describe('Parseador', function() {
+    it('Uno traducido', function() {
+      const r = new Parseador();
+      expect(r.traducirNumero("uno")).equal("1");
+    });
+  });
+
+  
