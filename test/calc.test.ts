@@ -52,6 +52,21 @@ import ParseadorOperaciones from "../src/ParseadorOperaciones";
     });
   });
 
+  describe('Test 100-9', function() {
+    it('1e+100', function() {
+      let r = new ParseadorNumeros();
+
+      let num="";
+      for (let i=0; i<100; i++){
+        num = num.concat("nueve")
+      }
+      const c = new Contexto(num);
+      r.parsear(c)
+      expect(c.valor).equal(10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000);
+    });
+  });
+
+
   describe('ParseadorNumeros', function() {
     it('NumeroGrande', function() {
       let r = new ParseadorNumeros();
@@ -130,30 +145,14 @@ import ParseadorOperaciones from "../src/ParseadorOperaciones";
   });
 
   describe('OperacionTraducida', function() {
-    it('Suma', function() {
-      let r = new ParseadorOperaciones();
-      let op = new Contexto("suma")
-      r.parsear(op)
-      expect(op.valor).equal(new Calculadora().Sumar);
-    });
-  });
-
-  describe('OperacionTraducida', function() {
-    it('Sumar', function() {
-      let r = new ParseadorOperaciones();
-      let op = new Contexto("suma")
-      r.parsear(op)
-      expect(op.valor).equal(new Calculadora().Sumar);
-    });
-  });
-  describe('OperacionTraducida', function() {
-    it('Restar', function() {
+    it('Resta', function() {
       let r = new ParseadorOperaciones();
       let op = new Contexto("restar")
       r.parsear(op)
       expect(op.valor).equal(new Calculadora().Restar);
     });
   });
+
   describe('OperacionTraducida', function() {
     it('Dividir', function() {
       let r = new ParseadorOperaciones();
@@ -162,6 +161,7 @@ import ParseadorOperaciones from "../src/ParseadorOperaciones";
       expect(op.valor).equal(new Calculadora().Dividir);
     });
   });
+
   describe('OperacionTraducida', function() {
     it('Multiplicar', function() {
       let r = new ParseadorOperaciones();
