@@ -1,11 +1,10 @@
 import { expect } from "chai";
 import 'mocha';
 import { AccionReceptor } from "../src/AccionReceptor";
-import { ParseadorNumeros } from "../src/ParseadorNumerosNumeros";
+import { ParseadorNumeros } from "../src/ParseadorNumeros";
 import {Calculadora} from "../src/Calculadora";
 import {Contexto} from "../src/Contexto";
-import OperacionSuma from "../src/ParseadorNumeros";
-import ParseadorOperaciones from "../src/ParseadorNumerosParseadorOperaciones";
+import ParseadorOperaciones from "../src/ParseadorOperaciones";
 
 
 
@@ -249,31 +248,19 @@ import ParseadorOperaciones from "../src/ParseadorNumerosParseadorOperaciones";
       contextos.push(new Contexto("nuevenuevenuevenuevenuevenueve"))
       contextos.push(new Contexto("uno"))
       contextos.push(new Contexto("suma"))
-        for(let i=0; i = contextos.length;i++){
-            for(let j=0; j=traductores.length; j++ ){
+        for(let i=0; i< contextos.length;i++){
+            for(let j=0; j<traductores.length; j++ ){
               traductores[j].parsear(contextos[i])
-              if()
+              if(contextos[i]!=null){
+                j++;
+              }
             }
         }
-      
-      expect(op.valor(numA.valor,numB.valor)).equal(1000000);
+      expect(contextos[2].valor(contextos[0].valor,contextos[1].valor)).equal(1000000);
     });
   });
 
-  describe('Calculo con', function() {
-    it('Suma', function() {
-      let r = new ParseadorNumeros();
-      let a = new ParseadorOperaciones();
-      const numA = new Contexto("nuevenuevenuevenuevenuevenueve")
-      const numB = new Contexto("uno")
-      let op = new Contexto("suma")
-      a.parsear(op)
-      r.parsear(numA)
-      r.parsear(numB)
-      
-      expect(op.valor(numA.valor,numB.valor)).equal(1000000);
-    });
-  });
+
 
   /*describe('ParseadorNumeros', function() {
     it('Uno traducido', function() {
