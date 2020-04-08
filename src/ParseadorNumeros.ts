@@ -4,7 +4,7 @@ import { Parseador } from "./Parseador";
 export class ParseadorNumeros extends Parseador{
 
     public traducirNumero(c : Contexto){
-        let valor;
+        let valor="";
         switch(c.expresion.substring(0,2)){
                 case "ce":
                     valor ="0";
@@ -47,7 +47,7 @@ export class ParseadorNumeros extends Parseador{
                     c.expresion = c.expresion.replace("nueve","");
                     break;
                 default:
-                    
+                    c.expresion="";
                     break;
                     
             } return valor;
@@ -55,10 +55,20 @@ export class ParseadorNumeros extends Parseador{
 
 
         public parsear(c : Contexto){
+            let expresion = c.expresion;
             let a = c;
             let traduccion="";
+
             while(a.expresion!=""){
                 traduccion=traduccion.concat(this.traducirNumero(a))
-            }c.valor = parseInt(traduccion);
+            
+            }
+            if(traduccion==""){
+                c.valor=null;
+                c.expresion=expresion;
+                
+            }else {
+                c.valor = parseInt(traduccion);
+            }
         }
     }

@@ -1,6 +1,6 @@
 export class Contexto {
     public expresion:string;
-    public valor;
+    public valor=null;
 
     constructor(numero:string){
         this.expresion=numero;

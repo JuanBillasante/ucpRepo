@@ -8,7 +8,7 @@ import ParseadorOperaciones from "../src/ParseadorOperaciones";
 
 
 
-    describe('accionNum1', function(){
+    /*describe('accionNum1', function(){
       it('Accion', function(){
         const r = new AccionReceptor();
         expect(r.ActionNumero("2")).equal("2");
@@ -41,7 +41,7 @@ import ParseadorOperaciones from "../src/ParseadorOperaciones";
         }
         expect(r.stateNumero).equal("10000000000000000000000");
     });
-  });
+  });*/
 
   describe('ParseadorNumeros', function() {
     it('Cero traducido', function() {
@@ -62,35 +62,37 @@ import ParseadorOperaciones from "../src/ParseadorOperaciones";
   });
 
   describe('ParseadorNumeros', function() {
-    it('NumeroGrandeeee', function() {
+    it('Default', function() {
       let r = new ParseadorNumeros();
-      const c = new Contexto("nuevenuevenuevenuevenuevenueve")
+      const c = new Contexto("")
       r.parsear(c)
-      expect(c.valor).equal(999999);
+      expect(c.valor).equal(null);
     });
   });
+
+
 
   describe('Operacion', function() {
     it('Suma', function() {
       let r = new ParseadorNumeros();
-      const numA = new Contexto("nuevenuevenuevenuevenuevenueve")
-      const numB = new Contexto("uno")
+      const numA = new Contexto("siete")
+      const numB = new Contexto("ocho")
       r.parsear(numA)
       r.parsear(numB)
       
-      expect(numA.valor+numB.valor).equal(1000000);
+      expect(numA.valor+numB.valor).equal(15);
     });
   });
 
   describe('Operacion', function() {
     it('Producto', function() {
       let r = new ParseadorNumeros();
-      const numA = new Contexto("nuevenuevenuevenuevenuevenueve")
-      const numB = new Contexto("uno")
+      const numA = new Contexto("seis")
+      const numB = new Contexto("dos")
       r.parsear(numA)
       r.parsear(numB)
       
-      expect(numA.valor*numB.valor).equal(999999);
+      expect(numA.valor*numB.valor).equal(12);
     });
   });
 
@@ -169,20 +171,15 @@ import ParseadorOperaciones from "../src/ParseadorOperaciones";
     });
   });
 
-  describe('Calculo con contexto', function() {
+  describe('OperacionTraducida', function() {
     it('Suma', function() {
-      let r = new ParseadorNumeros();
-      let a = new ParseadorOperaciones();
-      const numA = new Contexto("nuevenuevenuevenuevenuevenueve")
-      const numB = new Contexto("uno")
-      let op = new Contexto("suma")
-      a.parsear(op)
-      r.parsear(numA)
-      r.parsear(numB)
-      
-      expect(op.valor(numA.valor,numB.valor)).equal(1000000);
+      let r = new ParseadorOperaciones();
+      let op = new Contexto("nodefine")
+      r.parsear(op)
+      expect(op.valor).equal(null);
     });
   });
+
 
   describe('Calculo con contexto', function() {
     it('Suma', function() {
@@ -200,46 +197,54 @@ import ParseadorOperaciones from "../src/ParseadorOperaciones";
   });
 
   describe('Calculo con contexto', function() {
-    it('Suma', function() {
+    it('Resta', function() {
       let r = new ParseadorNumeros();
       let a = new ParseadorOperaciones();
-      const numA = new Contexto("nuevenuevenuevenuevenuevenueve")
-      const numB = new Contexto("uno")
-      let op = new Contexto("suma")
+      const numA = new Contexto("cinco")
+      const numB = new Contexto("tres")
+      let op = new Contexto("restar")
       a.parsear(op)
       r.parsear(numA)
       r.parsear(numB)
       
-      expect(op.valor(numA.valor,numB.valor)).equal(1000000);
+      expect(op.valor(numA.valor,numB.valor)).equal(2);
     });
   });
 
   describe('Calculo con contexto', function() {
-    it('Suma', function() {
+    it('Division', function() {
       let r = new ParseadorNumeros();
       let a = new ParseadorOperaciones();
-      const numA = new Contexto("nuevenuevenuevenuevenuevenueve")
-      const numB = new Contexto("uno")
-      let op = new Contexto("suma")
+      const numA = new Contexto("cuatro")
+      const numB = new Contexto("dos")
+      let op = new Contexto("dividir")
       a.parsear(op)
       r.parsear(numA)
       r.parsear(numB)
       
-      expect(op.valor(numA.valor,numB.valor)).equal(1000000);
+      expect(op.valor(numA.valor,numB.valor)).equal(2);
+    });
+  });
+
+  describe('Calculo con contexto', function() {
+    it('Multiplicacion', function() {
+      let r = new ParseadorNumeros();
+      let a = new ParseadorOperaciones();
+      const numA = new Contexto("nuevenuevenuevenuevenuevenueve")
+      const numB = new Contexto("uno")
+      let op = new Contexto("multiplicar")
+      r.parsear(op)
+      a.parsear(op)
+      r.parsear(numA)
+      r.parsear(numB)
+      
+      expect(op.valor(numA.valor,numB.valor)).equal(999999);
     });
   });
   
 
 
-
-
-
-
-
-
-
-
-  describe('Calculo con', function() {
+  describe('Calculo interpreter', function() {
     it('Suma', function() {
       let traductores=[];
       let contextos=[];
@@ -251,15 +256,79 @@ import ParseadorOperaciones from "../src/ParseadorOperaciones";
         for(let i=0; i< contextos.length;i++){
             for(let j=0; j<traductores.length; j++ ){
               traductores[j].parsear(contextos[i])
-              if(contextos[i]!=null){
-                j++;
+              if(contextos[i].valor!=null){
+                break;
               }
             }
-        }
+          }
       expect(contextos[2].valor(contextos[0].valor,contextos[1].valor)).equal(1000000);
     });
   });
 
+
+  describe('Calculo interpreter', function() {
+    it('Restar', function() {
+      let traductores=[];
+      let contextos=[];
+      traductores.push(new ParseadorNumeros());
+      traductores.push(new ParseadorOperaciones());
+      contextos.push(new Contexto("nuevenuevenuevenuevenuevenueve"))
+      contextos.push(new Contexto("uno"))
+      contextos.push(new Contexto("restar"))
+        for(let i=0; i< contextos.length;i++){
+            for(let j=0; j<traductores.length; j++ ){
+              traductores[j].parsear(contextos[i])
+              if(contextos[i].valor!=null){
+                break;
+              }
+            }
+          }
+      expect(contextos[2].valor(contextos[0].valor,contextos[1].valor)).equal(999998);
+    });
+  });
+
+
+  describe('Calculo interpreter', function() {
+    it('Producto', function() {
+      let traductores=[];
+      let contextos=[];
+      traductores.push(new ParseadorNumeros());
+      traductores.push(new ParseadorOperaciones());
+      contextos.push(new Contexto("nuevenuevenuevenuevenuevenueve"))
+      contextos.push(new Contexto("uno"))
+      contextos.push(new Contexto("multiplicar"))
+        for(let i=0; i< contextos.length;i++){
+            for(let j=0; j<traductores.length; j++ ){
+              traductores[j].parsear(contextos[i])
+              if(contextos[i].valor!=null){
+                break;
+              }
+            }
+          }
+      expect(contextos[2].valor(contextos[0].valor,contextos[1].valor)).equal(999999);
+    });
+  });
+
+  describe('Calculo interpreter', function() {
+    it('Dividir', function() {
+      let traductores=[];
+      let contextos=[];
+      traductores.push(new ParseadorNumeros());
+      traductores.push(new ParseadorOperaciones());
+      contextos.push(new Contexto("nuevenuevenuevenuevenuevenueve"))
+      contextos.push(new Contexto("uno"))
+      contextos.push(new Contexto("dividir"))
+        for(let i=0; i< contextos.length;i++){
+            for(let j=0; j<traductores.length; j++ ){
+              traductores[j].parsear(contextos[i])
+              if(contextos[i].valor!=null){
+                break;
+              }
+            }
+          }
+      expect(contextos[2].valor(contextos[0].valor,contextos[1].valor)).equal(999999);
+    });
+  });
 
 
   /*describe('ParseadorNumeros', function() {
