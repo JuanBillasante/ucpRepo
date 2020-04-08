@@ -1,4 +1,3 @@
-import { Suma } from "./Suma";
 
 export class Calculadora {
         public resultado=0;
@@ -6,7 +5,19 @@ export class Calculadora {
         public operando=0;
 
     
-    public operacionR(){
-        
-    }
-}export default Calculadora
+    public Sumar(numA , numB){
+            return numA + numB;
+        }
+
+    public Restar(numA, numB){
+            return numA - numB;
+        }
+
+    public Dividir(numA, numB){
+            return numA / numB;
+        }
+
+    public Multiplicar(numA, numB ){
+            return numA * numB;
+        }    
+    } export default Calculadora
