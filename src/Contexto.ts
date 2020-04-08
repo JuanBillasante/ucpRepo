@@ -1,12 +1,11 @@
 export class Contexto {
     public expresion:string;
-    public valor:number;
+    public valor;
 
-    constructor(){
+    constructor(numero:string){
+        this.expresion=numero;
     }
 
-    public contexto(p_expresion:string ){
-        this.expresion = p_expresion;
-
-    }
+    
 } export default Contexto;
+

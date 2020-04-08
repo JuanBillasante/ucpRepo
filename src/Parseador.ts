@@ -1,93 +1,63 @@
-import {Contexto} from "./Contexto";
+import { Contexto } from "../src/Contexto";
+
 export class Parseador{
 
-
-    public traducirNumero(num : string){
-        let valor="";
-        switch(num){
-                case "cero":
-                    valor = "0";
+    public traducirNumero(c : Contexto){
+        let valor;
+        switch(c.expresion.substring(0,2)){
+                case "ce":
+                    valor ="0";
+                    c.expresion = c.expresion.replace("cero","");
                     break;
-                case "uno":
-                    valor = "1";
+                case "un":
+                    valor="1";
+                    c.expresion = c.expresion.replace("uno","");
                     break;
-                case "dos":
+                case "do":
                     valor = "2";
+                    c.expresion = c.expresion.replace("dos","");
                     break;
-                case "tres":
+                case "tr":
                     valor = "3";
+                    c.expresion = c.expresion.replace("tres","");
                     break;
-                case "cuatro":
+                case "cu":
                     valor = "4";
+                    c.expresion = c.expresion.replace("cuatro","");
                     break;
-                case "cinco":
-                    valor = "5";
+                case "ci":
+                    valor = ("5");
+                    c.expresion = c.expresion.replace("cinco","");
                     break;
-                case "seis":
-                    valor = "6";
+                case "se":
+                    valor = ("6");
+                    c.expresion = c.expresion.replace("seis","");
                     break;
-                case "siete":
-                    valor = "7";
+                case "si":
+                    valor = ("7");
+                    c.expresion = c.expresion.replace("siete","");
                     break;
-                case "ocho":
-                    valor = "8";
+                case "oc":
+                    valor = ("8");
+                    c.expresion = c.expresion.replace("ocho","");
                     break;
-                case "nueve":
-                    valor = "9";
+                case "nu":
+                    valor = ("9");
+                    c.expresion = c.expresion.replace("nueve","");
                     break;
                 default:
-                    valor = "";
+                    
                     break;
                     
             } return valor;
         }
 
-        public borrarEspacios(text : string){
-            let aux = text;
-            text = text.replace(" ", "");
-            while(aux != text){
-                aux = text;
-                text = text.replace(" ", "");
 
-            }return aux;
-           
+        public traducirExpresion(c : Contexto){
+            let a = c;
+            let traduccion="";
+            while(a.expresion!=""){
+                traduccion=traduccion.concat(this.traducirNumero(a))
+            }c.valor = parseInt(traduccion);
         }
-
-       /* public borrar(numT: string, num : string){
-            let valor;
-            switch(num){
-                case "0":
-                    valor = numT.replace("cero", "");
-                    break;
-                case "1":
-                    valor = numT.replace("uno", "");
-                    break;                
-                case "2":
-                    valor = numT.replace("dos", "");
-                    break;
-                case "3":
-                    valor = numT.replace("tres", "");
-                    break;
-                case "4":
-                    valor = numT.replace("cuatro", "");
-                    break;
-                case "5":
-                    valor = numT.replace("cinco", "");
-                    break;
-                case "6":
-                    valor = numT.replace("seis", "");
-                    break;
-                case "7":
-                    valor = numT.replace("siete", "");
-                    break;
-                case "8":
-                    valor = numT.replace("ocho", "");
-                    break;
-                case "9":
-                    valor = numT.replace("nueve", "");
-                    break;
-            }
-            return valor;
-    
-        }*/
     }
